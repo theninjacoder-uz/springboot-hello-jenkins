@@ -30,9 +30,9 @@ pipeline {
 
             steps {
 //                  withCredentials([string(credentialsId: 'DockerId', variable: 'Dockerpwd')])
-                 {
+
                     sh "docker login -u davrondev -p 18032002d"
-                }
+
             }
         }
         stage('Docker Push'){
