@@ -18,10 +18,16 @@ pipeline {
                 sh "mvn package"
             }
         }
+
+         stage('Initialize'){
+                def dockerHome = tool 'myDocker'
+                env.PATH = "${dockerHome}/bin:${env.PATH}"
+            }
+
         stage('Build Docker image'){
 
             steps {
-                echo "Hello Java Express"
+                echo "Hello Java docker run"
                 sh 'ls'
                 sh 'docker build -t  davrondev/docker_jenkins_springboot:${BUILD_NUMBER} .'
             }
