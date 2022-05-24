@@ -26,7 +26,8 @@ pipeline {
             steps {
                 echo "Hello Java docker run"
                 sh 'ls'
-                sh "docker build -t  davrondev/docker_jenkins_springboot:${BUILD_NUMBER} ."
+                sh 'docker run -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock --name jenkins jenkins'
+//                 sh "docker build -t  davrondev/docker_jenkins_springboot:${BUILD_NUMBER} ."
             }
         }
         stage('Docker Login'){
