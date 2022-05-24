@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo "Hello Java docker run"
                 sh 'ls'
-                sh 'docker build -t  davrondev/docker_jenkins_springboot:${BUILD_NUMBER} .'
+                sh "docker build -t  davrondev/docker_jenkins_springboot:${BUILD_NUMBER} ."
             }
         }
         stage('Docker Login'){
@@ -37,19 +37,19 @@ pipeline {
             steps {
 //                  withCredentials([string(credentialsId: 'DockerId', variable: 'Dockerpwd')])
 
-                    sh "docker login -u davrondev -p 18032002d"
+                  sh 'docker login -u davrondev -p 18032002d'
 
             }
         }
         stage('Docker Push'){
             steps {
-                sh 'docker push davrondev/docker_jenkins_springboot:${BUILD_NUMBER}'
+                sh "docker push davrondev/docker_jenkins_springboot:${BUILD_NUMBER}"
             }
         }
         stage('Docker deploy'){
             steps {
 
-                sh 'docker run -itd -p  8081:8080 davrondev/docker_jenkins_springboot:${BUILD_NUMBER}'
+                sh "docker run -itd -p  8081:8080 davrondev/docker_jenkins_springboot:${BUILD_NUMBER}"
             }
         }
         stage('Archving') {
