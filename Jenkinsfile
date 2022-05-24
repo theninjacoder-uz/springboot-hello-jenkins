@@ -18,7 +18,15 @@ pipeline {
                 sh "mvn clean install"
             }
         }
-
+        stage(''){
+            steps{
+                
+                sh 'sudo usermod -a -G docker $USER'
+                sh 'chmod 664 /var/run/docker.sock'
+                sh 'reboot' 
+            
+            }
+        }
        stage('connect docker_jenkins_springboot'){
        steps{
          sh 'docker network create jenkins'
